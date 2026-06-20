@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup Live - Watch Free</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand"><span class="dot"></span> WC LIVE</div>
+    <nav>
+      <a href="index.html" class="active">Live</a>
+      <a href="schedule.html">Schedule</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="live-badge"><span class="pulse"></span> LIVE NOW</div>
+    <h1>FIFA World Cup Matches</h1>
+    <p>Clean, fast streaming. Bangladesh Time (BST / UTC+6)</p>
+  </section>
+
+  <section id="live-grid" class="grid">
+    <!-- Matches injected by JS -->
+  </section>
+
+  <section id="upcoming-section" style="padding-bottom:50px">
+    <h2 style="font-size:18px; color:#8b9a8b; margin-bottom:12px;">Upcoming</h2>
+    <div id="upcoming-grid" class="grid" style="padding-top:0"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="made">Created by Mahdi</div>
+    <div style="margin-top:8px">FIFA World Cup Live Streaming • 2026</div>
+  </div>
+</footer>
+
+<script src="matches.js"></script>
+<script>
+const liveGrid = document.getElementById('live-grid');
+const upcomingGrid = document.getElementById('upcoming-grid');
+
+function fmtTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleString('en-GB', {
+    timeZone: 'Asia/Dhaka',
+    day: '2-digit', month: 'short',
+    hour: '2-digit', minute:'2-digit',
+    hour12: true
+  }) + ' BST';
+}
+
+function card(m) {
+  return `<a class="match-card" href="watch.html?id=${m.id}">
+    <div class="match-top">
+      <span>${m.competition}</span>
+      <span class="${m.status==='live'?'status-live':'status-up'}">${m.status==='live'?'● LIVE':'Upcoming'}</span>
+    </div>
+    <div class="teams">
+      <div class="team"><span class="team-flag">${m.homeFlag}</span><div class="team-name">${m.home}</div></div>
+      <div class="vs">VS</div>
+      <div class="team"><span class="team-flag">${m.awayFlag}</span><div class="team-name">${m.away}</div></div>
+    </div>
+    <div class="match-meta">
+      <span>${fmtTime(m.time)}</span>
+      <span class="watch-btn">Watch →</span>
+    </div>
+  </a>`;
+}
+
+const live = MATCHES.filter(m => m.status === 'live');
+const upcoming = MATCHES.filter(m => m.status !== 'live');
+
+liveGrid.innerHTML = live.length ? live.map(card).join('') : '<div class="empty">No live matches right now. Check the schedule.</div>';
+upcomingGrid.innerHTML = upcoming.length ? upcoming.map(card).join('') : '';
+if(!upcoming.length) document.getElementById('upcoming-section').style.display='none';
+</script>
+</body>
+</html>

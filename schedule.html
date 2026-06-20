@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Match Schedule - FIFA World Cup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand"><span class="dot"></span> WC LIVE</div>
+    <nav>
+      <a href="index.html">Live</a>
+      <a href="schedule.html" class="active">Schedule</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container schedule-wrap">
+  <h1>Match Schedule</h1>
+  <p style="color:#8b9a8b;margin-bottom:18px">All times shown in Bangladesh Time (BST / UTC+6)</p>
+
+  <div class="table-wrap">
+    <table id="schedule-table">
+      <thead>
+        <tr>
+          <th>Date & Time (BST)</th>
+          <th>Match</th>
+          <th>Competition</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="schedule-body"></tbody>
+    </table>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="made">Created by Mahdi</div>
+    <div style="margin-top:8px">FIFA World Cup Live Streaming • 2026</div>
+  </div>
+</footer>
+
+<script src="matches.js"></script>
+<script>
+const tbody = document.getElementById('schedule-body');
+
+function fmt(iso){
+  return new Date(iso).toLocaleString('en-GB', {
+    timeZone: 'Asia/Dhaka',
+    weekday:'short', day:'2-digit', month:'short',
+    hour:'2-digit', minute:'2-digit', hour12:true
+  }) + ' BST';
+}
+
+const sorted = [...MATCHES].sort((a,b)=> new Date(a.time) - new Date(b.time));
+
+tbody.innerHTML = sorted.map(m => `
+  <tr>
+    <td data-label="Time">${fmt(m.time)}</td>
+    <td data-label="Match"><strong>${m.homeFlag} ${m.home} vs ${m.away} ${m.awayFlag}</strong></td>
+    <td data-label="Competition">${m.competition}</td>
+    <td data-label="Status">${m.status==='live' ? '<span class="badge-live">● LIVE</span>' : '<span class="badge-up">Upcoming</span>'}</td>
+    <td data-label="Watch"><a href="watch.html?id=${m.id}" style="color:#00e676;font-weight:700">Watch →</a></td>
+  </tr>
+`).join('');
+</script>
+</body>
+</html>

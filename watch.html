@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Live - FIFA World Cup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand"><span class="dot"></span> WC LIVE</div>
+    <nav>
+      <a href="index.html">Live</a>
+      <a href="schedule.html">Schedule</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container watch-wrap">
+  <div class="watch-layout">
+    <div>
+      <div class="player-box" id="player-box">
+        <!-- Player injected here -->
+        <video id="video-player" playsinline controls crossorigin style="width:100%;height:100%;display:none"></video>
+        <div id="iframe-wrap" style="display:none"></div>
+        <div id="no-stream" style="display:flex;align-items:center;justify-content:center;height:100%;color:#8b9a8b;text-align:center;padding:20px;display:none">
+          Stream URL not set.<br>See README.md to add your stream.
+        </div>
+      </div>
+      <div class="match-head">
+        <h2 id="match-title">Loading match…</h2>
+        <div class="sub" id="match-sub"></div>
+      </div>
+      <div class="note">
+        <strong>Smooth playback tips:</strong> Player uses HLS.js with auto quality. If you see buffering, lower quality with the gear icon. Works best on Wi-Fi / 4G+.
+      </div>
+    </div>
+
+    <aside>
+      <div class="side-card">
+        <h3>Live Now</h3>
+        <div class="side-list" id="live-list"></div>
+      </div>
+      <div class="side-card" style="margin-top:14px">
+        <h3>Need help?</h3>
+        <p style="color:#8b9a8b;font-size:13px;line-height:1.6">
+          Edit stream links in <code>matches.js</code>.<br>
+          Supports: YouTube Live, HLS .m3u8, and iframe embeds.<br>
+          Only use streams you own / have rights to broadcast.
+        </p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="made">Created by Mahdi</div>
+    <div style="margin-top:8px">FIFA World Cup Live Streaming • 2026</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script src="matches.js"></script>
+<script src="player.js"></script>
+</body>
+</html>
