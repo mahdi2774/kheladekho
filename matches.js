@@ -33,10 +33,7 @@ const MATCHES = [
     time: "2026-06-20T23:00:00+06:00", // Bangladesh Time (UTC+6)
     status: "live",
     competition: "FIFA World Cup",
-    stream: {
-      type: "hls",
-      // REPLACE WITH YOUR LEGAL HLS STREAM
-      url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+    stream: { type: 'iframe', url: 'https://8.kooralive360.com/albaplayer/bein-sports-hd-1' }
     }
   },
   {
@@ -48,10 +45,7 @@ const MATCHES = [
     time: "2026-06-21T01:00:00+06:00",
     status: "live",
     competition: "FIFA World Cup",
-    stream: {
-      type: "hls",
-      // REPLACE WITH YOUR LEGAL HLS STREAM
-      url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+    stream: { type: 'iframe', url: 'https://cswc6.blogspot.com/p/match1.html' }
     }
   },
   {
@@ -63,9 +57,7 @@ const MATCHES = [
     time: "2026-06-22T00:00:00+06:00",
     status: "upcoming",
     competition: "FIFA World Cup",
-    stream: {
-      type: "hls",
-      url: ""
+    stream: { type: 'iframe', url: 'https://8.kooralive360.com/albaplayer/bein-sports-hd-1/?serv=4' }
     }
   },
   {
@@ -77,9 +69,7 @@ const MATCHES = [
     time: "2026-06-22T03:00:00+06:00",
     status: "upcoming",
     competition: "FIFA World Cup",
-    stream: {
-      type: "hls",
-      url: ""
+    stream: { type: 'iframe', url: 'https://8.kooralive360.com/albaplayer/bein-sports-hd-1/?serv=3' }
     }
   },
   {
@@ -93,7 +83,7 @@ const MATCHES = [
     competition: "FIFA World Cup",
     stream: {
       type: "hls",
-      url: ""
+      url: "https://8.kooralive360.com/albaplayer/bein-sports-hd-1/?serv=7"
     }
   }
 ];
